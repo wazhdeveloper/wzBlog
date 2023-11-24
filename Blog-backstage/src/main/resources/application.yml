@@ -1,0 +1,29 @@
+server:
+  port: 8989
+spring:
+  datasource:
+    username: root
+    password: 780906
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://8.130.8.46:3306/wz_blog?characterEncoding=utf-8&serverTimezone=UTC
+  redis:
+    host: 8.130.8.46
+    password: 780906
+    port: 6379
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher #Springboot2.6以后将SpringMVC 默认路径匹配策略从AntPathMatcher 更改为PathPatternParser,与swagger2冲突
+  banner:
+    location: banner.txt
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      id-type: auto
+aliyun:
+  oss:
+    accessKeyId: LTAI5tKbGUAdreQc8TAHTwen
+    accessKeySecret: 55dr7LkbwUkfGR2SMY4nDSXaWZjt8f
+    endpoint: https://oss-cn-nanjing.aliyuncs.com
+    bucketName: edu-nuist

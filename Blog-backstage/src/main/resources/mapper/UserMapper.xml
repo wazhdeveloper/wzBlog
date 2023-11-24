@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wz.blogbackstage.mapper.UserMapper">
+
+    <insert id="addUserRole">
+        INSERT INTO `sys_user_role`
+        VALUES (#{userId}, #{roleId});
+    </insert>
+    <insert id="saveUserRole">
+        INSERT INTO `sys_user_role`
+        values (#{userId}, #{roleId});
+    </insert>
+    <delete id="removeRoleOfUser">
+        delete
+        from `sys_user_role`
+        where user_id = #{userId}
+          and role_id = #{roleId};
+    </delete>
+
+    <select id="maxUserId" resultType="java.lang.Long">
+        SELECT MAX(id)
+        FROM `sys_user`;
+    </select>
+
+    <select id="getRolesOfUser" resultType="java.lang.Long">
+        SELECT role_id
+        FROM `sys_user_role`
+        WHERE user_id = #{userId};
+    </select>
+
+</mapper>

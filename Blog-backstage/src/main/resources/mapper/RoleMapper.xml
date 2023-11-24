@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wz.blogbackstage.mapper.RoleMapper">
+    <insert id="saveRoleMenu">
+        INSERT INTO `sys_role_menu`
+        VALUES (#{roleId}, #{menuId});
+    </insert>
+
+    <delete id="deleteRoleMenu">
+        DELETE
+        FROM `sys_role_menu`
+        WHERE role_id = 1
+          AND menu_id = 1;
+    </delete>
+
+    <select id="getRoleKey" resultType="java.lang.String">
+        SELECT sr.role_key
+        FROM sys_user_role sur
+                 JOIN sys_role sr ON sur.role_id = sr.id
+        WHERE sur.user_id = #{userId}
+          AND sr.`status` = 0
+          AND sr.`del_flag` = 0;
+    </select>
+    <select id="getRoleIdsByUserId" resultType="java.lang.Long">
+        SELECT role_id
+        FROM `sys_user_role`
+        WHERE user_id = #{userId};
+    </select>
+</mapper>

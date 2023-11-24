@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wz.blogforeground.mapper.CommentMapper">
+    <insert id="addComment">
+        INSERT INTO `wz_comment`
+        VALUES (NULL, #{type}, #{articleId}, #{rootId}, #{content}, #{toCommentId}, #{toCommentUserId}, #{createBy},
+                #{createTime}, #{updateBy}, #{updateTime}, #{delFlag});
+    </insert>
+
+    <select id="getCommentList" resultType="com.wz.blogcommon.bean.Comment">
+        SELECT *
+        FROM `wz_comment`
+        <trim prefix="where" suffixOverrides="and|or">
+            <if test="articleId != null and articleId != 0">
+                article_id = #{articleId} AND
+            </if>
+            del_flag = 0
+            AND `type` = #{commentType}
+        </trim>
+        ORDER BY create_time ASC
+        LIMIT #{pageStart}, #{pageSize};
+    </select>
+
+    <select id="getCommentById" resultType="com.wz.blogcommon.bean.Comment">
+        SELECT *
+        FROM `wz_comment`
+        WHERE root_id = #{id}
+          and del_flag = 0
+        ORDER by create_time ASC;
+    </select>
+</mapper>

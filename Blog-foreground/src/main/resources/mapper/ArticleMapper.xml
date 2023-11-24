@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wz.blogforeground.mapper.ArticleMapper">
+    <update id="updateBatchById">
+        UPDATE `wz_article`
+        SET `view_count` = #{viewCount}
+        WHERE id = #{id};
+    </update>
+
+    <select id="getHotArticles" resultType="com.wz.blogcommon.bean.Article">
+        SELECT *
+        FROM `wz_article`
+        WHERE `status` = 0
+          and `del_flag` = 0
+        ORDER BY view_count DESC LIMIT 10;
+    </select>
+    <select id="getArticleList" resultType="com.wz.blogcommon.bean.Article">
+        SELECT *
+        FROM `wz_article`
+        <trim prefix="where" suffixOverrides="and|or">
+            <if test="categoryId != 0">
+                `category_id` = #{categoryId} AND
+            </if>
+            `status` = 0 and `del_flag` = 0
+        </trim>
+        ORDER BY is_top DESC LIMIT #{pageStart}, #{offset}
+    </select>
+    <select id="getArticleById" resultType="com.wz.blogcommon.bean.Article">
+        SELECT *
+        FROM `wz_article`
+        WHERE id = #{id}
+          and status = 0
+          and `del_flag` = 0;
+    </select>
+    <select id="getAllArticle" resultType="com.wz.blogcommon.bean.Article">
+        SELECT *
+        FROM `wz_article`
+        WHERE `status` = 0
+          AND del_flag = 0;
+    </select>
+
+</mapper>

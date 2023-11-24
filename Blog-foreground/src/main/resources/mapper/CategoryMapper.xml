@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wz.blogforeground.mapper.CategoryMapper">
+
+    <select id="getCategoryList" resultType="com.wz.blogcommon.bean.Category">
+        SELECT DISTINCT `id` ,`name` FROM `wz_category` WHERE id IN (SELECT DISTINCT `category_id` FROM `wz_article` WHERE `status` = 0 and `del_flag` = 0) and `del_flag` = 0;
+    </select>
+    <select id="getById" resultType="com.wz.blogcommon.bean.Category">
+        SELECT * FROM `wz_category` WHERE id = #{id} and `del_flag` = 0;
+    </select>
+</mapper>

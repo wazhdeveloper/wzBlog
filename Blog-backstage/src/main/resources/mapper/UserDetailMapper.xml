@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wz.blogbackstage.mapper.UserDetailMapper">
+
+    <select id="getUserByUserName" resultType="com.wz.blogcommon.bean.User">
+        SELECT *
+        FROM `sys_user`
+        WHERE `user_name` = #{userName}
+          AND `del_flag` = 0
+          AND `status` = 0;
+    </select>
+</mapper>
