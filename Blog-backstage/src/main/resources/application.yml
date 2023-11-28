@@ -23,7 +23,7 @@ mybatis-plus:
       id-type: auto
 aliyun:
   oss:
-    accessKeyId: LTAI5tKbGUAdreQc8TAHTwen
-    accessKeySecret: 55dr7LkbwUkfGR2SMY4nDSXaWZjt8f
+    accessKeyId: 
+    accessKeySecret: 
     endpoint: https://oss-cn-nanjing.aliyuncs.com
     bucketName: edu-nuist
